@@ -2,30 +2,45 @@
 
 ![CI](https://github.com/eduherminio/AdventOfCode.MultiYearTemplate/workflows/CI/badge.svg)
 
-Advent of Code template based on [AoCHelper](https://github.com/eduherminio/AoCHelper) project that showcases how to keep problems from multiple years in the same repository, using one project per year.
+Advent of Code template based on [AoCHelper](https://github.com/eduherminio/AoCHelper) project, that showcases how to keep problems from multiple years in the same repositor by yusing one project per year.
 
-Please have a look at [eduherminio/AdventOfCode.Template](https://github.com/eduherminio/AdventOfCode.Template) for a simpler template corresponding to one repository per year, and to [AoCHelper README file](https://github.com/eduherminio/AoCHelper#advanced-usage) for advance usage of the library.
+⚠️ If you're not familiar with [AoCHelper](https://github.com/eduherminio/AoCHelper) and the basic template, please have a look at [eduherminio/AdventOfCode.Template](https://github.com/eduherminio/AdventOfCode.Template) first, a simpler template (based on one repository per year approach) where the Solver and the Day classesare in the same assembly.
 
-Problem example:
+[AoCHelper README file](https://github.com/eduherminio/AoCHelper#advanced-usage) also includes valuable information about how to use and extend the library.
+
+## Usage
+
+### Base library day
+
+Base library day example, with the minimum changes required to make this approach work.
+In the actual template code this class it's split into a common, base day for all the projects and specific ones for each project (which override the year).
 
 ```csharp
 using AoCHelper;
-using System.Threading.Tasks;
+using System.Reflection;
 
-namespace AoC2033;
+namespace AoCh2033;
 
-public class Day_01 : BaseLibraryDay
+public abstract class BaseDay2033 : BaseDay
 {
-    protected override int Year => 2033;
+    protected int Year => 2033;
 
-    public override ValueTask<string> Solve_1() => new("Solution 1");
-
-    public override ValueTask<string> Solve_2() => new("Solution 2");
+    /// <summary>
+    /// Two purposes:
+    /// 1. Required to make sure `dotnet run` uses output directory files, since problems aren't located in the assembly where <see cref="Solver"/> is used.
+    /// 2. Since input files for different years have the same name, they would override each other in the output directory Inputs folder if we're not careful.
+    /// This implementation relies on having different Inputs_{Year} directories per assembly/library
+    /// </summary>
+    protected override string InputFileDirPath =>
+        Path.Combine(
+            Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!,      // Takes care of concern 1
+            $"{base.InputFileDirPath}_{Year}");                                 // Takes care of concern 2
 }
-
 ```
 
-Runner example:
+### Solver usage
+
+Basic 'runner' example:
 
 ```csharp
 using AoCHelper;
@@ -42,3 +57,6 @@ await Solver.SolveAll(opt =>
         .. opt.ProblemAssemblies];
 });
 ```
+
+You probably want to customize this so that it accepts a command line argument to specify the year to run.
+Or, if you're lazy, you can just comment the assembly lines of previous years.
