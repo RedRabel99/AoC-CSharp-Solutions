@@ -21,6 +21,9 @@ using System.Reflection;
 
 namespace AoCh2033;
 
+/// <summary>
+/// This implementation relies on having different Inputs_{Year} directories per assembly/library
+/// </summary>
 public abstract class BaseDay2033 : BaseDay
 {
     protected int Year => 2033;
@@ -29,12 +32,51 @@ public abstract class BaseDay2033 : BaseDay
     /// Two purposes:
     /// 1. Required to make sure `dotnet run` uses output directory files, since problems aren't located in the assembly where <see cref="Solver"/> is used.
     /// 2. Since input files for different years have the same name, they would override each other in the output directory Inputs folder if we're not careful.
-    /// This implementation relies on having different Inputs_{Year} directories per assembly/library
     /// </summary>
     protected override string InputFileDirPath =>
         Path.Combine(
             Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!,      // Takes care of concern 1
             $"{base.InputFileDirPath}_{Year}");                                 // Takes care of concern 2
+}
+```
+
+Alternative way of solving the second concern, if you don't want to have different Inputs directory names per assembly/library:
+
+```csharp
+using AoCHelper;
+using System.Reflection;
+
+namespace AoCh2033;
+
+/// <summary>
+/// This implementation relies on having different file names per assembly/library (i.e. YYYY_dd.txt)
+/// </summary>
+public abstract class BaseDay2033 : BaseDay
+{
+    protected int Year => 2033;
+
+    /// <summary>
+    /// Required to make sure `dotnet run` uses output directory files, since problems aren't located in the assembly
+    /// where <see cref="Solver"/> is used.
+    /// </summary>
+    protected override string InputFileDirPath =>
+        Path.Combine(
+            Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!,
+            InputFileDirPath);
+
+    /// <summary>
+    /// Expects '{Year}_' before the usual file name, i.e. 2033_01.txt.
+    /// Based in <see cref="AoCHelper.BaseProblem.InputFilePath"/> original implementation
+    /// </summary>
+    public override string InputFilePath
+    {
+        get
+        {
+            var index = CalculateIndex().ToString("D2");
+
+            return Path.Combine(InputFileDirPath, $"{Year}_{index}.{InputFileExtension.TrimStart('.')}");
+        }
+    }
 }
 ```
 
