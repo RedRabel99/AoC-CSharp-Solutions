@@ -62,7 +62,7 @@ public abstract class BaseDay2033 : BaseDay
     protected override string InputFileDirPath =>
         Path.Combine(
             Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!,
-            InputFileDirPath);
+            base.InputFileDirPath);
 
     /// <summary>
     /// Expects '{Year}_' before the usual file name, i.e. 2033_01.txt.
