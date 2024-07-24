@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="AoCHelper" Version="3.1.0" />
+  </ItemGroup>
+
+</Project>

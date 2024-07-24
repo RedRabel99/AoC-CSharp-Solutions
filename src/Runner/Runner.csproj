@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AoC2020\AoC2020.csproj" />
+    <ProjectReference Include="..\AoC2021\AoC2021.csproj" />
+    <ProjectReference Include="..\AoC2022\AoC2022.csproj" />
+  </ItemGroup>
+
+</Project>
