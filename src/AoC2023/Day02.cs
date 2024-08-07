@@ -12,11 +12,13 @@ internal struct GameSet
 public class Day02 : BaseLibraryDay
 {
     private readonly string[] _input;
+    private readonly List<List<GameSet>> _games;
     protected override int Year => 2023;
 
     public Day02()
     {
         _input = File.ReadAllLines(InputFilePath);
+        _games = ParseInput();
     }
 
     private static GameSet ParseGameSet(string setLine)
@@ -72,17 +74,41 @@ public class Day02 : BaseLibraryDay
         return true;
     }
 
+    private static int GetPowerOfSet(List<GameSet> gameSets)
+    {
+        var maxRed = 0;
+        var maxGreen = 0;
+        var maxBlue = 0;
+
+        foreach (var set in gameSets)
+        {
+            if (set.Red > maxRed) maxRed = set.Red;
+            if (set.Green > maxGreen) maxGreen = set.Green;
+            if (set.Blue > maxBlue) maxBlue = set.Blue;
+        }
+
+        return maxRed * maxGreen * maxBlue;
+    }
+
     public override ValueTask<string> Solve_1()
     {
-        var games = ParseInput();
         var sum = 0;
-        for (var i = 0; i < games.Count; i++)
+        for (var i = 0; i < _games.Count; i++)
         {
-            if (CanGameBePlayed(games[i])) sum += i + 1;
+            if (CanGameBePlayed(_games[i])) sum += i + 1;
         }
 
         return new(sum.ToString());
     }
 
-    public override ValueTask<string> Solve_2() => new($"Solution to {ClassPrefix} {CalculateIndex()} {Year} part 2");
+    public override ValueTask<string> Solve_2()
+    {
+        var sum = 0;
+        foreach (var gameSets in _games)
+        {
+            sum += GetPowerOfSet(gameSets);
+        }
+
+        return new(sum.ToString());
+    }
 }
