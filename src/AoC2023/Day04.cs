@@ -44,6 +44,23 @@ public class Day04 : BaseLibraryDay
 
     public override ValueTask<string> Solve_2()
     {
-        return new($"0");
+        var cards = ParseInput();
+        int[] copiesOfCards = new int[cards.Count];
+
+        for (int i = 0; i < copiesOfCards.Length; i++)
+        {
+            copiesOfCards[i] = 1;
+        }
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            var count = cards[i].Item1.Count(a => cards[i].Item2.Contains(a));
+            
+            for(var j = 1; j <= count; j++)
+            {
+                copiesOfCards[j + i] += 1 * copiesOfCards[i];
+            }
+        }
+        return new($"{copiesOfCards.Sum()}");
     }
 }

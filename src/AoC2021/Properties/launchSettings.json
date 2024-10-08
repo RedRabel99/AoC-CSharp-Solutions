@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AoC2021": {
+      "commandName": "Project",
+      "commandLineArgs": "4 2022"
+    }
+  }
+}
