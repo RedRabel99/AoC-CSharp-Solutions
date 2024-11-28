@@ -1,12 +1,12 @@
 ﻿using AoCHelper;
 using System.Reflection;
-using Common;
 
 var assembliesByYear = new Dictionary<uint, Assembly>
 {
     [2020] = Assembly.GetAssembly(typeof(AoC_2020.Base2020Day))!,
     [2021] = Assembly.GetAssembly(typeof(AoC_2021.Base2021Day))!,
-    [2022] = Assembly.GetAssembly(typeof(AoC_2022.Day02))!
+    [2022] = Assembly.GetAssembly(typeof(AoC_2022.Day02))!,
+    [2023] = Assembly.GetAssembly(typeof(AoC_2023.Day01))!,
 };
 
 List<Assembly> Assemblies(uint year) =>
@@ -14,12 +14,6 @@ List<Assembly> Assemblies(uint year) =>
         ? [assembly]
         : [];
 
-    return yearToAssembly.TryGetValue(year.Value, out var assemblies)
-        ? new List<Assembly> { assemblies }
-        : new List<Assembly>();
-}
-
-uint year;
 if (args.Length == 0)
 {
     await Solver.SolveLast(opt =>
@@ -35,19 +29,21 @@ else if (args.Length == 1)
     if (args[0].Contains("all", StringComparison.CurrentCultureIgnoreCase))
     {
         yearAssemblies = assembliesByYear.Values;
+        
     }
     else if (uint.TryParse(args[0], out var year))
     {
         yearAssemblies = Assemblies(year);
+        Console.WriteLine(yearAssemblies);
     }
 
     if (yearAssemblies.Count > 0)
     {
-        await Solver.SolveAll(opt =>
+        await Solver.SolveLast(opt =>
         {
             opt.ShowConstructorElapsedTime = true;
             opt.ShowTotalElapsedTimePerDay = true;
-            opt.ProblemAssemblies = [.. assembliesByYear.Values, .. opt.ProblemAssemblies];
+            opt.ProblemAssemblies = [.. yearAssemblies, .. opt.ProblemAssemblies];
         });
     }
 }
