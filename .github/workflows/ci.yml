@@ -33,11 +33,15 @@ jobs:
       # To use this repository's private action, you must check out the repository
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+
+          persist-credentials: false
 
       - name: actions-template-sync
         uses: AndreasAugustin/actions-template-sync@v2
         with:
           source_repo_path: eduherminio/AdventOfCode.MultiYearTemplate
+          target_gh_token: ${{ secrets.<secret_name> }}
           upstream_branch: <target_branch> # defaults to main
           pr_labels: <label1>,<label2>[,...] # defaults to template_sync
 
