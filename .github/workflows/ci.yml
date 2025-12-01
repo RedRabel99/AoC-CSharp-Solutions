@@ -21,3 +21,5 @@ jobs:
     - name: Solve all
       run: dotnet run -c Release --no-build -- all
       working-directory: ./src/Runner
+    - name: actions-template-sync
+      uses: AndreasAugustin/actions-template-sync@v2.5.2
