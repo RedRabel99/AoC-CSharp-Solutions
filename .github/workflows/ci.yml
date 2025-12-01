@@ -41,7 +41,7 @@ jobs:
         uses: AndreasAugustin/actions-template-sync@v2
         with:
           source_repo_path: eduherminio/AdventOfCode.MultiYearTemplate
-          target_gh_token: ${{ secrets.<WORKFLOW_TOKEN> }}
+          target_gh_token: ${{ secrets.WORKFLOW_TOKEN }}
           upstream_branch: <target_branch> # defaults to main
           pr_labels: <label1>,<label2>[,...] # defaults to template_sync
 
