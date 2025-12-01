@@ -38,3 +38,7 @@ jobs:
         uses: AndreasAugustin/actions-template-sync@v2
         with:
           source_repo_path: eduherminio/AdventOfCode.MultiYearTemplate
+          pr_labels: template-sync
+          upstream_branch: main
+          pr_commit_msg: "chore: sync with template"
+          files_to_exclude: .github/workflows/
