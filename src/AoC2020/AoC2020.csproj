@@ -1,5 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Update="$(MSBuildProjectDirectory)\Inputs_2020\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

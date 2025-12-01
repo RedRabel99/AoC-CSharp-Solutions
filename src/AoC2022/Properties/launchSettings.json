@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AoC2022": {
+      "commandName": "Project"
+    },
+    "Profile 1": {
+      "commandName": "Project"
+    }
+  }
+}
