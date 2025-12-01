@@ -23,3 +23,5 @@ jobs:
       working-directory: ./src/Runner
     - name: actions-template-sync
       uses: AndreasAugustin/actions-template-sync@v2.5.2
+      with:
+          source_repo_path: eduherminio/AdventOfCode.MultiYearTemplate
