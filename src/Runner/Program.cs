@@ -5,9 +5,7 @@ var assembliesByYear = new Dictionary<uint, Assembly>
 {
     [2020] = Assembly.GetAssembly(typeof(AoC_2020.Base2020Day))!,
     [2021] = Assembly.GetAssembly(typeof(AoC_2021.Base2021Day))!,
-    [2022] = Assembly.GetAssembly(typeof(AoC_2022.Day02))!,
-    [2023] = Assembly.GetAssembly(typeof(AoC_2023.Day01))!,
-    [2024] = Assembly.GetAssembly(typeof(AoC2024.Day01))!,
+    [2022] = Assembly.GetAssembly(typeof(AoC_2022.Day02))!
 };
 
 List<Assembly> Assemblies(uint year) =>
@@ -30,17 +28,15 @@ else if (args.Length == 1)
     if (args[0].Contains("all", StringComparison.CurrentCultureIgnoreCase))
     {
         yearAssemblies = assembliesByYear.Values;
-        
     }
     else if (uint.TryParse(args[0], out var year))
     {
         yearAssemblies = Assemblies(year);
-        Console.WriteLine(yearAssemblies);
     }
 
     if (yearAssemblies.Count > 0)
     {
-        await Solver.SolveLast(opt =>
+        await Solver.SolveAll(opt =>
         {
             opt.ShowConstructorElapsedTime = true;
             opt.ShowTotalElapsedTimePerDay = true;

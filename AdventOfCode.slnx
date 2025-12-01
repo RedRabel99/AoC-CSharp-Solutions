@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AoC2020.Test/AoC2020.Test.csproj" />
+  </Folder>
+  <Folder Name="/Years/">
+    <Project Path="src/AoC2020/AoC2020.csproj" />
+    <Project Path="src/AoC2021/AoC2021.csproj" />
+    <Project Path="src/AoC2022/AoC2022.csproj" />
+  </Folder>
+  <Project Path="src/Common/Common.csproj" />
+  <Project Path="src/Runner/Runner.csproj" />
+</Solution>

@@ -482,8 +482,8 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
-/src/AoC2023/Inputs_2023/04.txt
-/src/AoC2023/Inputs_2023/05.txt
-/src/AoC2023/Inputs_2023/03.txt
-/src/AoC2023/Inputs_2023/02.txt
-/src/AoC2023/Inputs_2023/01.txt
+
+# Test inpus
+Inputs/
+TestInputs/
+Inputs_*/
