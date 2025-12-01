@@ -21,7 +21,20 @@ jobs:
     - name: Solve all
       run: dotnet run -c Release --no-build -- all
       working-directory: ./src/Runner
-    - name: actions-template-sync
-      uses: AndreasAugustin/actions-template-sync@v2.5.2
-      with:
+      
+  repo-sync:
+    runs-on: ubuntu-latest
+    # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      # To use this repository's private action, you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: actions-template-sync
+        uses: AndreasAugustin/actions-template-sync@v2
+        with:
           source_repo_path: eduherminio/AdventOfCode.MultiYearTemplate
