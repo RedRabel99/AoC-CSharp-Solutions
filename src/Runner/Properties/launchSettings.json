@@ -2,11 +2,11 @@
   "profiles": {
     "Runner": {
       "commandName": "Project",
-      "commandLineArgs": "all"
+      "commandLineArgs": "2025 1"
     },
     "Run all 2024": {
       "commandName": "Project",
-      "commandLineArgs": "2024"
+      "commandLineArgs": "2024 5"
     },
     "Run all 2023": {
       "commandName": "Project",

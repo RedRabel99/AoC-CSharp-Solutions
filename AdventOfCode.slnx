@@ -11,6 +11,7 @@
     <Project Path="src/AoC2022/AoC2022.csproj" />
     <Project Path="src/AoC2023/AoC2023.csproj" />
     <Project Path="src/AoC2024/AoC2024.csproj" />
+    <Project Path="src/AoC2025/AoC2025.csproj" Id="13dadbc1-7bc4-4b11-91ce-47a94d0bc557" />
   </Folder>
   <Project Path="src/Common/Common.csproj" />
   <Project Path="src/Runner/Runner.csproj" />

@@ -8,6 +8,7 @@ var assembliesByYear = new Dictionary<uint, Assembly>
     [2022] = Assembly.GetAssembly(typeof(AoC_2022.Day02))!,
     [2023] = Assembly.GetAssembly(typeof(AoC_2023.Day01))!,
     [2024] = Assembly.GetAssembly(typeof(AoC2024.Day01))!,
+    [2025] = Assembly.GetAssembly(typeof(AoC2025.Day01))!
 };
 
 List<Assembly> Assemblies(uint year) =>
