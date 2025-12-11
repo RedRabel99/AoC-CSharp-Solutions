@@ -18,7 +18,7 @@ namespace AoC2025
 
             var operations = _input[4].Split(' ', StringSplitOptions.RemoveEmptyEntries);
             long sum = 0;
-            for(var i = 0; i< operations.Length; i++)
+            for (var i = 0; i < operations.Length; i++)
             {
 
                 var first = long.Parse(numbers[0][i]);
@@ -34,9 +34,27 @@ namespace AoC2025
 
         public override ValueTask<string> Solve_2()
         {
-            for(var i = _input[0].Length; i >= 0; i-= 4)
+            long sum = 0;
+            var problemElemets = new List<long>();
+            for (var i = _input[0].Length - 1; i >= 0; i--)
+            {
+                var number = "";
+                number += _input[0][i];
+                number += _input[1][i];
+                number += _input[2][i];
+                number += _input[3][i];
+                problemElemets.Add(long.Parse(number.Trim()));
 
-            return new();
+                var op = _input[4][i];
+                if (op == ' ') continue;
+
+                sum += op == '+' ? problemElemets.Sum() : problemElemets.Aggregate((long)1, (a, b) => a * b);
+                problemElemets.Clear();
+
+                i--;
+            }
+
+            return new(sum.ToString());
         }
     }
 }
